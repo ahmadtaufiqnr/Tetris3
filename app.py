@@ -9,9 +9,9 @@ st.set_page_config(
     page_title='Analisis Data Saham ASII (Astra Internasional)',
     layout='wide'
 )
-df=pd.read_csv("C:/Users/atauf/Downloads/ASII.csv")
+# df=pd.read_csv("C:/Users/atauf/Downloads/ASII.csv")
 
-df_normal=pd.read_csv("D:\TETRIS 3\PYTHON\Session # 5 - Bulding Interactive Dashboard with Python (1) - Python Streamlit\Belajar_Streamlit\datanormalized.csv")
+# df_normal=pd.read_csv("D:\TETRIS 3\PYTHON\Session # 5 - Bulding Interactive Dashboard with Python (1) - Python Streamlit\Belajar_Streamlit\datanormalized.csv")
 
 
 # st.write("Hello world!")
