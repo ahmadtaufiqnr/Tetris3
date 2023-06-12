@@ -2,7 +2,6 @@ import streamlit as st
 import datetime
 from lorem_text import lorem
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 import datetime as dt
 
