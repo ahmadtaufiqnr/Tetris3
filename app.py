@@ -7,11 +7,45 @@ import datetime as dt
 import altair as alt
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.offline import iplot
 
 st.set_page_config(
-    page_title='Analisis Data Saham ASII (Astra International Tbk)',
+    page_title='Analisis Persaingan Harga Saham ASII, UNTR, AUTO, AALI, dan ASGR',
     layout='wide'
 )
+
+#SIDEBAR
+with st.sidebar:
+    st.title('**Capstone Project**')
+    st.subheader('Data Analytics Fast Track Program - TETRIS Batch III - The CEO Project')
+    # your_name=st.text_input("enter name")
+    # with st.expander('lorem ipsum'):
+    #     st.write(lorem.paragraphs(1))
+    st.markdown(
+        """
+        Keterangan :
+
+        **1. Open (Harga pembukaan)**
+        > adalah harga perdagangan pertama suatu saham pada awal sesi perdagangan.
+
+        **2. Low (Harga terendah)**\n
+        > adalah harga terendah yang dicapai oleh suatu saham selama periode waktu tertentu, seperti hari perdagangan, minggu, bulan, atau tahun.
+
+        **3. High (Harga tertinggi)**\n
+        > adalah harga tertinggi yang dicapai oleh suatu saham selama periode waktu tertentu.
+
+        **4. Close (Harga penutupan)**\n
+        > adalah harga perdagangan terakhir suatu saham pada akhir sesi perdagangan.
+
+        **5. Volume (Volume perdagangan)**\n
+        > adalah jumlah saham yang diperdagangkan selama periode waktu tertentu. Hal ini mencerminkan seberapa aktifnya suatu saham diperdagangkan.
+
+        **Sumber Data**
+        > https://www.kaggle.com/datasets/muamkh/ihsgstockdata
+        
+        """
+    )
+
 df=pd.read_csv("ASII.csv")
 df = df.rename(columns={'timestamp': 'date'})
 df1=df.set_index('date')
@@ -21,80 +55,37 @@ df_norm_auto=pd.read_csv("datanormalized_AUTO.csv")
 df_norm_aali=pd.read_csv("datanormalized_AALI.csv")
 df_norm_asgr=pd.read_csv("datanormalized_ASGR.csv")
 
-data=pd.pivot_table(
-    data=df2,
-    index='Year',
-    aggfunc={
-        'open':'sum',
-        'low':'sum',
-        'high':'sum',
-        'close':'sum'
-    }
-).reset_index()
-
-data1=pd.pivot_table(
-    data=df_norm_untr,
-    index='Year',
-    aggfunc={
-        'open':'sum',
-        'low':'sum',
-        'high':'sum',
-        'close':'sum'
-    }
-).reset_index()
-
-data2=pd.pivot_table(
-    data=df_norm_auto,
-    index='Year',
-    aggfunc={
-        'open':'sum',
-        'low':'sum',
-        'high':'sum',
-        'close':'sum'
-    }
-).reset_index()
-
-data3=pd.pivot_table(
-    data=df_norm_aali,
-    index='Year',
-    aggfunc={
-        'open':'sum',
-        'low':'sum',
-        'high':'sum',
-        'close':'sum'
-    }
-).reset_index()
-
-data4=pd.pivot_table(
-    data=df_norm_asgr,
-    index='Year',
-    aggfunc={
-        'open':'sum',
-        'low':'sum',
-        'high':'sum',
-        'close':'sum'
-    }
-).reset_index()
 
 st.title("Analisis Persaingan Harga Saham ASII, UNTR, AUTO, AALI, dan ASGR")
-st.write("Ahmad Taufiq Nur Rahman")
-st.caption("ataufiqnr799@gmail.com")
+st.write("**Ahmad Taufiq Nur Rahman** | ataufiqnr799@gmail.com | www.linkedin.com/in/ahmadtaufiqnr ")
+"---"
 
-st.header("Apa itu Saham???")
+col1, col2=st.columns((2,3))
+with col1:
+    st.header("Apa itu Saham?",anchor="SAHAM")
+    st.markdown(
+    """
+    Saham adalah instrumen keuangan yang mewakili kepemilikan sebagian dari suatu perusahaan. Ketika seseorang membeli saham maka secara efektif orang tersebut membeli bagian kecil dari perusahaan.
+    Investasi saham dapat dilakukan oleh individu atau institusi dengan harapan mendapatkan keuntungan dari kenaikan harga saham atau dividen yang dibayarkan oleh perusahaan.
+    
+    ---
+    """
+    )
+    st.subheader("Faktor yang Mempengaruhi Harga Saham")
 
-"Saham adalah instrumen keuangan yang mewakili kepemilikan sebagian dari suatu perusahaan. Ketika seseorang membeli saham maka secara efektif orang tersebut membeli bagian kecil dari perusahaan."
-"Investasi saham dapat dilakukan oleh individu atau institusi dengan harapan mendapatkan keuntungan dari kenaikan harga saham atau dividen yang dibayarkan oleh perusahaan."
+with col2:
+    st.image('gambar1.jpg', caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
-st.header(
-    "Faktor yang Mempengaruhi Harga Saham"
-)
-
-"1. Kinerja Keuangan Perusahaan: Kinerja keuangan perusahaan, termasuk pendapatan, laba bersih, pertumbuhan penjualan, dan marjin keuntungan, dapat mempengaruhi harga saham. Jika kinerja keuangan perusahaan lebih baik dari harapan, harga saham cenderung naik, sementara kinerja yang buruk dapat menyebabkan penurunan harga saham."
-"2. Prospek Pertumbuhan: Prospek pertumbuhan perusahaan dan industri secara keseluruhan dapat mempengaruhi harga saham. Jika sebuah perusahaan memiliki prospek pertumbuhan yang positif, seperti meluncurkan produk baru atau memperluas pasar, hal itu dapat menyebabkan kenaikan harga saham. Sebaliknya, jika prospek pertumbuhan terlihat suram, harga saham bisa turun."
-"3. Kondisi Ekonomi Makro: Kondisi ekonomi makro, seperti tingkat suku bunga, inflasi, pertumbuhan ekonomi, dan kebijakan moneter, dapat berdampak signifikan pada harga saham secara keseluruhan. Misalnya, kondisi ekonomi yang kuat dan suku bunga rendah cenderung mendukung kenaikan harga saham, sedangkan resesi atau kebijakan moneter yang ketat dapat menyebabkan penurunan harga saham."
-"4. Sentimen Pasar: Sentimen investor dan persepsi pasar terhadap saham atau pasar secara keseluruhan juga dapat mempengaruhi harga saham. Sentimen positif, seperti optimisme dan keyakinan investor, dapat mendorong kenaikan harga saham, sementara sentimen negatif, seperti kekhawatiran atau kepanikan, dapat menyebabkan penurunan harga saham."
-"5. Berita dan Peristiwa: Berita dan peristiwa penting yang terkait dengan perusahaan atau industri, seperti laporan keuangan, peluncuran produk, perubahan manajemen, merger atau akuisisi, perubahan regulasi, atau peristiwa global penting, dapat mempengaruhi harga saham. Berita positif atau peristiwa yang dianggap menguntungkan bisa meningkatkan harga saham, sementara berita negatif atau peristiwa yang tidak diharapkan bisa menekan harga saham."
-
+# st.subheader(
+#     """
+#         "Faktor yang Mempengaruhi Harga Saham"
+#         **Helo** _there_, 'how are you'?
+#     > Quickly
+#     - This
+#     - is
+    
+#     """
+# )
 "Maka dari itu, untuk mengetahui kondisi saham dari suatu perusahaan diperlukan adanya analisis dari harga saham tiap waktunya agar investor dapat memilih waktu yang tepat untuk melakukan investasi saham ke perusahaan tersebut."
 "Berikut analisis harga saham ASII (Astra International Tbk.), UNTR (United Tractors Tbk.), AUTO (Astra Otoparts Tbk.), AALI (Astra Agro Lestari Tbk.), dan ASGR (Astra Graphia Tbk.)."
 st.caption(
@@ -105,35 +96,54 @@ st.caption(
 
 # st.dataframe(df1)
 # st.dataframe(df2)
+
+data_ly=df2.groupby('Year').last().reset_index()
+data1_ly=df_norm_untr.groupby('Year').last().reset_index()
+data2_ly=df_norm_auto.groupby('Year').last().reset_index()
+data3_ly=df_norm_aali.groupby('Year').last().reset_index()
+data4_ly=df_norm_asgr.groupby('Year').last().reset_index()
+
+# # Histogram Sum Close per Tahun
+# df_hist_sum = pd.concat([data_ly.assign(dataset='ASII Close'), data1_ly.assign(dataset='UNTR Close'),
+#                 data2_ly.assign(dataset='AUTO Close'), data3_ly.assign(dataset='AALI Close'),
+#                 data4_ly.assign(dataset='ASGR Close')])
+
+# fig = px.bar(df_hist_sum, x='Year', y='volume', color='dataset',
+#             title="Sum Close Trend Saham per Tahun ",
+#             labels={'year': 'Year', 'volume': 'Volume', 'dataset': 'Saham'})
+
+# st.plotly_chart(fig, use_container_width=True)
+
+st.subheader("Return Saham per Tahun")
+
 CURR_YEAR=st.select_slider(
     "Pilih tahun",
     [2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002]
 )
 PREV_YEAR=CURR_YEAR-1
 
-
 ket, mx_open, mx_low, mx_high, mx_close = st.columns(5)
 with ket:
     st.markdown("<h3 style='font-size: 30px; color: blue;'>ASII</h3>", unsafe_allow_html=True)
     st.markdown("<h3 style='font-size: 20px; color: orange;'>Astra International Tbk.</h3>", unsafe_allow_html=True)
 with mx_open:
-    curr_open = data.loc[data['Year']==CURR_YEAR, 'open'].values[0]
-    prev_open = data.loc[data['Year']==PREV_YEAR, 'open'].values[0]
+    curr_open = data_ly.loc[data_ly['Year']==CURR_YEAR, 'open'].values[0]
+    prev_open = data_ly.loc[data_ly['Year']==PREV_YEAR, 'open'].values[0]
     open_diff_pct=100.0*(curr_open-prev_open)/prev_open
     st.metric('open', value=curr_open, delta=f'{open_diff_pct:.2f}%')
 with mx_low:
-    curr_low = data.loc[data['Year']==CURR_YEAR, 'low'].values[0]
-    prev_low = data.loc[data['Year']==PREV_YEAR, 'low'].values[0]
+    curr_low = data_ly.loc[data_ly['Year']==CURR_YEAR, 'low'].values[0]
+    prev_low = data_ly.loc[data_ly['Year']==PREV_YEAR, 'low'].values[0]
     low_diff_pct=100.0*(curr_low-prev_low)/prev_low
     st.metric('low', value=curr_low, delta=f'{low_diff_pct:.2f}%')
 with mx_high:
-    curr_high = data.loc[data['Year']==CURR_YEAR, 'high'].values[0]
-    prev_high = data.loc[data['Year']==PREV_YEAR, 'high'].values[0]
+    curr_high = data_ly.loc[data_ly['Year']==CURR_YEAR, 'high'].values[0]
+    prev_high = data_ly.loc[data_ly['Year']==PREV_YEAR, 'high'].values[0]
     high_diff_pct=100.0*(curr_high-prev_high)/prev_high
     st.metric('high', value=curr_high, delta=f'{high_diff_pct:.2f}%')
 with mx_close:
-    curr_close = data.loc[data['Year']==CURR_YEAR, 'close'].values[0]
-    prev_close = data.loc[data['Year']==PREV_YEAR, 'close'].values[0]
+    curr_close = data_ly.loc[data_ly['Year']==CURR_YEAR, 'close'].values[0]
+    prev_close = data_ly.loc[data_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
 
@@ -142,23 +152,23 @@ with ket:
     st.markdown("<h3 style='font-size: 30px; color: blue;'>UNTR</h3>", unsafe_allow_html=True)
     st.markdown("<h3 style='font-size: 20px; color: orange;'>United Tractors Tbk.</h3>", unsafe_allow_html=True)
 with mx_open:
-    curr_open1 = data1.loc[data1['Year']==CURR_YEAR, 'open'].values[0]
-    prev_open1 = data1.loc[data1['Year']==PREV_YEAR, 'open'].values[0]
+    curr_open1 = data1_ly.loc[data1_ly['Year']==CURR_YEAR, 'open'].values[0]
+    prev_open1 = data1_ly.loc[data1_ly['Year']==PREV_YEAR, 'open'].values[0]
     open_diff_pct1=100.0*(curr_open1-prev_open1)/prev_open1
     st.metric('open', value=curr_open1, delta=f'{open_diff_pct1:.2f}%')
 with mx_low:
-    curr_low = data1.loc[data1['Year']==CURR_YEAR, 'low'].values[0]
-    prev_low = data1.loc[data1['Year']==PREV_YEAR, 'low'].values[0]
+    curr_low = data1_ly.loc[data1_ly['Year']==CURR_YEAR, 'low'].values[0]
+    prev_low = data1_ly.loc[data1_ly['Year']==PREV_YEAR, 'low'].values[0]
     low_diff_pct=100.0*(curr_low-prev_low)/prev_low
     st.metric('low', value=curr_low, delta=f'{low_diff_pct:.2f}%')
 with mx_high:
-    curr_high = data1.loc[data1['Year']==CURR_YEAR, 'high'].values[0]
-    prev_high = data1.loc[data1['Year']==PREV_YEAR, 'high'].values[0]
+    curr_high = data1_ly.loc[data1_ly['Year']==CURR_YEAR, 'high'].values[0]
+    prev_high = data1_ly.loc[data1_ly['Year']==PREV_YEAR, 'high'].values[0]
     high_diff_pct=100.0*(curr_high-prev_high)/prev_high
     st.metric('high', value=curr_high, delta=f'{high_diff_pct:.2f}%')
 with mx_close:
-    curr_close = data1.loc[data1['Year']==CURR_YEAR, 'close'].values[0]
-    prev_close = data1.loc[data1['Year']==PREV_YEAR, 'close'].values[0]
+    curr_close = data1_ly.loc[data1_ly['Year']==CURR_YEAR, 'close'].values[0]
+    prev_close = data1_ly.loc[data1_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
 
@@ -167,23 +177,23 @@ with ket:
     st.markdown("<h3 style='font-size: 30px; color: blue;'>AUTO</h3>", unsafe_allow_html=True)
     st.markdown("<h3 style='font-size: 20px; color: orange;'>Astra Otoparts Tbk.</h3>", unsafe_allow_html=True)
 with mx_open:
-    curr_open = data2.loc[data2['Year']==CURR_YEAR, 'open'].values[0]
-    prev_open = data2.loc[data2['Year']==PREV_YEAR, 'open'].values[0]
+    curr_open = data2_ly.loc[data2_ly['Year']==CURR_YEAR, 'open'].values[0]
+    prev_open = data2_ly.loc[data2_ly['Year']==PREV_YEAR, 'open'].values[0]
     open_diff_pct=100.0*(curr_open-prev_open)/prev_open
     st.metric('open', value=curr_open, delta=f'{open_diff_pct:.2f}%')
 with mx_low:
-    curr_low = data2.loc[data2['Year']==CURR_YEAR, 'low'].values[0]
-    prev_low = data2.loc[data2['Year']==PREV_YEAR, 'low'].values[0]
+    curr_low = data2_ly.loc[data2_ly['Year']==CURR_YEAR, 'low'].values[0]
+    prev_low = data2_ly.loc[data2_ly['Year']==PREV_YEAR, 'low'].values[0]
     low_diff_pct=100.0*(curr_low-prev_low)/prev_low
     st.metric('low', value=curr_low, delta=f'{low_diff_pct:.2f}%')
 with mx_high:
-    curr_high = data2.loc[data2['Year']==CURR_YEAR, 'high'].values[0]
-    prev_high = data2.loc[data2['Year']==PREV_YEAR, 'high'].values[0]
+    curr_high = data2_ly.loc[data2_ly['Year']==CURR_YEAR, 'high'].values[0]
+    prev_high = data2_ly.loc[data2_ly['Year']==PREV_YEAR, 'high'].values[0]
     high_diff_pct=100.0*(curr_high-prev_high)/prev_high
     st.metric('high', value=curr_high, delta=f'{high_diff_pct:.2f}%')
 with mx_close:
-    curr_close = data2.loc[data2['Year']==CURR_YEAR, 'close'].values[0]
-    prev_close = data2.loc[data2['Year']==PREV_YEAR, 'close'].values[0]
+    curr_close = data2_ly.loc[data2_ly['Year']==CURR_YEAR, 'close'].values[0]
+    prev_close = data2_ly.loc[data2_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
 
@@ -192,23 +202,23 @@ with ket:
     st.markdown("<h3 style='font-size: 30px; color: blue;'>AALI</h3>", unsafe_allow_html=True)
     st.markdown("<h3 style='font-size: 20px; color: orange;'>Astra Agro Lestari Tbk.</h3>", unsafe_allow_html=True)
 with mx_open:
-    curr_open = data3.loc[data3['Year']==CURR_YEAR, 'open'].values[0]
-    prev_open = data3.loc[data3['Year']==PREV_YEAR, 'open'].values[0]
+    curr_open = data3_ly.loc[data3_ly['Year']==CURR_YEAR, 'open'].values[0]
+    prev_open = data3_ly.loc[data3_ly['Year']==PREV_YEAR, 'open'].values[0]
     open_diff_pct=100.0*(curr_open-prev_open)/prev_open
     st.metric('open', value=curr_open, delta=f'{open_diff_pct:.2f}%')
 with mx_low:
-    curr_low = data3.loc[data3['Year']==CURR_YEAR, 'low'].values[0]
-    prev_low = data3.loc[data3['Year']==PREV_YEAR, 'low'].values[0]
+    curr_low = data3_ly.loc[data3_ly['Year']==CURR_YEAR, 'low'].values[0]
+    prev_low = data3_ly.loc[data3_ly['Year']==PREV_YEAR, 'low'].values[0]
     low_diff_pct=100.0*(curr_low-prev_low)/prev_low
     st.metric('low', value=curr_low, delta=f'{low_diff_pct:.2f}%')
 with mx_high:
-    curr_high = data3.loc[data3['Year']==CURR_YEAR, 'high'].values[0]
-    prev_high = data3.loc[data3['Year']==PREV_YEAR, 'high'].values[0]
+    curr_high = data3_ly.loc[data3_ly['Year']==CURR_YEAR, 'high'].values[0]
+    prev_high = data3_ly.loc[data3_ly['Year']==PREV_YEAR, 'high'].values[0]
     high_diff_pct=100.0*(curr_high-prev_high)/prev_high
     st.metric('high', value=curr_high, delta=f'{high_diff_pct:.2f}%')
 with mx_close:
-    curr_close = data3.loc[data3['Year']==CURR_YEAR, 'close'].values[0]
-    prev_close = data3.loc[data3['Year']==PREV_YEAR, 'close'].values[0]
+    curr_close = data3_ly.loc[data3_ly['Year']==CURR_YEAR, 'close'].values[0]
+    prev_close = data3_ly.loc[data3_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
 
@@ -217,25 +227,270 @@ with ket:
     st.markdown("<h3 style='font-size: 30px; color: blue;'>ASGR</h3>", unsafe_allow_html=True)
     st.markdown("<h3 style='font-size: 20px; color: orange;'>Astra Graphia Tbk.</h3>", unsafe_allow_html=True)
 with mx_open:
-    curr_open = data4.loc[data4['Year']==CURR_YEAR, 'open'].values[0]
-    prev_open = data4.loc[data4['Year']==PREV_YEAR, 'open'].values[0]
+    curr_open = data4_ly.loc[data4_ly['Year']==CURR_YEAR, 'open'].values[0]
+    prev_open = data4_ly.loc[data4_ly['Year']==PREV_YEAR, 'open'].values[0]
     open_diff_pct=100.0*(curr_open-prev_open)/prev_open
     st.metric('open', value=curr_open, delta=f'{open_diff_pct:.2f}%')
 with mx_low:
-    curr_low = data4.loc[data4['Year']==CURR_YEAR, 'low'].values[0]
-    prev_low = data4.loc[data4['Year']==PREV_YEAR, 'low'].values[0]
+    curr_low = data4_ly.loc[data4_ly['Year']==CURR_YEAR, 'low'].values[0]
+    prev_low = data4_ly.loc[data4_ly['Year']==PREV_YEAR, 'low'].values[0]
     low_diff_pct=100.0*(curr_low-prev_low)/prev_low
     st.metric('low', value=curr_low, delta=f'{low_diff_pct:.2f}%')
 with mx_high:
-    curr_high = data4.loc[data4['Year']==CURR_YEAR, 'high'].values[0]
-    prev_high = data4.loc[data4['Year']==PREV_YEAR, 'high'].values[0]
+    curr_high = data4_ly.loc[data4_ly['Year']==CURR_YEAR, 'high'].values[0]
+    prev_high = data4_ly.loc[data4_ly['Year']==PREV_YEAR, 'high'].values[0]
     high_diff_pct=100.0*(curr_high-prev_high)/prev_high
     st.metric('high', value=curr_high, delta=f'{high_diff_pct:.2f}%')
 with mx_close:
-    curr_close = data4.loc[data4['Year']==CURR_YEAR, 'close'].values[0]
-    prev_close = data4.loc[data4['Year']==PREV_YEAR, 'close'].values[0]
+    curr_close = data4_ly.loc[data4_ly['Year']==CURR_YEAR, 'close'].values[0]
+    prev_close = data4_ly.loc[data4_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
+st.caption("Keterangan : JANGAN LUPA DIISI")
+
+st.header("Harga Setiap Saham")
+st.caption("Harga Saham mulai Januari 2019 sampai Januari 2023")
+
+tab1,tab2,tab3,tab4,tab5=st.tabs(['ASII','UNTR','AUTO','AALI','ASGR'])
+with tab1:
+    col1,col2=st.columns((3,1))
+    with col1:
+        # STOCK CANDLESTICK
+        # ASII
+        df_asii=pd.read_csv("ASII.csv")
+        df_asii['timestamp'] = pd.to_datetime(df_asii['timestamp'])
+        df_asii['year'] = df_asii['timestamp'].dt.year
+        df_asii['month'] = df_asii['timestamp'].dt.month
+        df_asii['day'] = df_asii['timestamp'].dt.day
+        df_asii['SMA_10'] = df_asii.close.rolling(10, min_periods=1).mean()
+        df_asii['SMA_30'] = df_asii.close.rolling(30, min_periods=1).mean()
+        df_asii1=df_asii
+        df_asii = df_asii.loc[(df_asii['timestamp'].dt.year >= 2019) & (df_asii['timestamp'].dt.year <= 2023)]
+        fig = go.Figure(data=[
+            go.Scatter(x=df_asii['timestamp'],
+                    y=df_asii['SMA_10'],
+                    mode='lines',
+                    name='SMA10'),
+            go.Scatter(x=df_asii['timestamp'],
+                    y=df_asii['SMA_30'],
+                    mode='lines',
+                    name='SMA30'),
+            go.Candlestick(x=df_asii['timestamp'],
+                        open=df_asii['open'],
+                        high=df_asii['high'],
+                        low=df_asii['low'],
+                        close=df_asii['close'],
+                        name='Candlestick')
+        ])
+        fig.update_layout(title="ASII stock price",
+                        xaxis_title='Date',
+                        yaxis_title='Price')
+        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.write(lorem.paragraphs(1))
+with tab2:
+    col1,col2=st.columns((3,1))
+    with col1:
+        #UNTR
+        df_untr=pd.read_csv("UNTR.csv")
+        df_untr['timestamp'] = pd.to_datetime(df_untr['timestamp'])
+        df_untr['year'] = df_untr['timestamp'].dt.year
+        df_untr['month'] = df_untr['timestamp'].dt.month
+        df_untr['day'] = df_untr['timestamp'].dt.day
+        df_untr['SMA_10'] = df_untr.close.rolling(10, min_periods=1).mean()
+        df_untr['SMA_30'] = df_untr.close.rolling(30, min_periods=1).mean()
+        df_untr1=df_untr
+        df_untr = df_untr.loc[(df_untr['timestamp'].dt.year >= 2019) & (df_untr['timestamp'].dt.year <= 2023)]
+
+        fig = go.Figure(data=[
+            go.Scatter(x=df_untr['timestamp'],
+                    y=df_untr['SMA_10'],
+                    mode='lines',
+                    name='SMA10'),
+            go.Scatter(x=df_untr['timestamp'],
+                    y=df_untr['SMA_30'],
+                    mode='lines',
+                    name='SMA30'),
+            go.Candlestick(x=df_untr['timestamp'],
+                        open=df_untr['open'],
+                        high=df_untr['high'],
+                        low=df_untr['low'],
+                        close=df_untr['close'],
+                        name='Candlestick')
+        ])
+        fig.update_layout(title="UNTR stock price",
+                        xaxis_title='Date',
+                        yaxis_title='Price')
+        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.write(lorem.paragraphs(1))
+
+with tab3:
+    col1,col2=st.columns((3,1))
+    with col1:
+        #AUTO
+        df_auto=pd.read_csv("AUTO.csv")
+        df_auto['timestamp'] = pd.to_datetime(df_auto['timestamp'])
+        df_auto['year'] = df_auto['timestamp'].dt.year
+        df_auto['month'] = df_auto['timestamp'].dt.month
+        df_auto['day'] = df_auto['timestamp'].dt.day
+        df_auto['SMA_10'] = df_auto.close.rolling(10, min_periods=1).mean()
+        df_auto['SMA_30'] = df_auto.close.rolling(30, min_periods=1).mean()
+        df_auto1=df_auto
+        df_auto = df_auto.loc[(df_auto['timestamp'].dt.year >= 2019) & (df_auto['timestamp'].dt.year <= 2023)]
+
+        fig = go.Figure(data=[
+            go.Scatter(x=df_auto['timestamp'],
+                    y=df_auto['SMA_10'],
+                    mode='lines',
+                    name='SMA10'),
+            go.Scatter(x=df_auto['timestamp'],
+                    y=df_auto['SMA_30'],
+                    mode='lines',
+                    name='SMA30'),
+            go.Candlestick(x=df_auto['timestamp'],
+                        open=df_auto['open'],
+                        high=df_auto['high'],
+                        low=df_auto['low'],
+                        close=df_auto['close'],
+                        name='Candlestick')
+        ])
+        fig.update_layout(title="AUTO stock price",
+                        xaxis_title='Date',
+                        yaxis_title='Price')
+        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.write(lorem.paragraphs(1))
+
+with tab4:
+    col1,col2=st.columns((3,1))
+    with col1:
+        #AALI
+        df_aali=pd.read_csv("AALI.csv")
+        df_aali['timestamp'] = pd.to_datetime(df_aali['timestamp'])
+        df_aali['year'] = df_aali['timestamp'].dt.year
+        df_aali['month'] = df_aali['timestamp'].dt.month
+        df_aali['day'] = df_aali['timestamp'].dt.day
+        df_aali['SMA_10'] = df_aali.close.rolling(10, min_periods=1).mean()
+        df_aali['SMA_30'] = df_aali.close.rolling(30, min_periods=1).mean()
+        df_aali1=df_aali
+        df_aali = df_aali.loc[(df_aali['timestamp'].dt.year >= 2019) & (df_aali['timestamp'].dt.year <= 2023)]
+
+        fig = go.Figure(data=[
+            go.Scatter(x=df_aali['timestamp'],
+                    y=df_aali['SMA_10'],
+                    mode='lines',
+                    name='SMA10'),
+            go.Scatter(x=df_aali['timestamp'],
+                    y=df_aali['SMA_30'],
+                    mode='lines',
+                    name='SMA30'),
+            go.Candlestick(x=df_aali['timestamp'],
+                        open=df_aali['open'],
+                        high=df_aali['high'],
+                        low=df_aali['low'],
+                        close=df_aali['close'],
+                        name='Candlestick')
+        ])
+        fig.update_layout(title="AALI stock price",
+                        xaxis_title='Date',
+                        yaxis_title='Price')
+        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.write(lorem.paragraphs(1))
+
+with tab5:
+    col1,col2=st.columns((3,1))
+    with col1:
+        #ASGR
+        df_asgr=pd.read_csv("ASGR.csv")
+        df_asgr['timestamp'] = pd.to_datetime(df_asgr['timestamp'])
+        df_asgr['year'] = df_asgr['timestamp'].dt.year
+        df_asgr['month'] = df_asgr['timestamp'].dt.month
+        df_asgr['day'] = df_asgr['timestamp'].dt.day
+        df_asgr['SMA_10'] = df_asgr.close.rolling(10, min_periods=1).mean()
+        df_asgr['SMA_30'] = df_asgr.close.rolling(30, min_periods=1).mean()
+        df_asgr1=df_asgr
+        df_asgr = df_asgr.loc[(df_asgr['timestamp'].dt.year >= 2019) & (df_asgr['timestamp'].dt.year <= 2023)]
+
+        fig = go.Figure(data=[
+            go.Scatter(x=df_asgr['timestamp'],
+                    y=df_asgr['SMA_10'],
+                    mode='lines',
+                    name='SMA10'),
+            go.Scatter(x=df_asgr['timestamp'],
+                    y=df_asgr['SMA_30'],
+                    mode='lines',
+                    name='SMA30'),
+            go.Candlestick(x=df_asgr['timestamp'],
+                        open=df_asgr['open'],
+                        high=df_asgr['high'],
+                        low=df_asgr['low'],
+                        close=df_asgr['close'],
+                        name='Candlestick')
+        ])
+        fig.update_layout(title="ASGR stock price",
+                        xaxis_title='Date',
+                        yaxis_title='Price')
+        st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            st.write(lorem.paragraphs(1))
+
+data_mean=pd.pivot_table(
+    data=df_asii1,
+    index='year',
+    aggfunc={
+        'volume':'mean',
+    }
+).reset_index()
+
+data1_mean=pd.pivot_table(
+    data=df_untr1,
+    index='year',
+    aggfunc={
+        'volume':'mean',
+    }
+).reset_index()
+
+data2_mean=pd.pivot_table(
+    data=df_auto1,
+    index='year',
+    aggfunc={
+        'volume':'mean',
+    }
+).reset_index()
+
+data3_mean=pd.pivot_table(
+    data=df_aali1,
+    index='year',
+    aggfunc={
+        'volume':'mean',
+    }
+).reset_index()
+
+data4_mean=pd.pivot_table(
+    data=df_asgr1,
+    index='year',
+    aggfunc={
+        'volume':'mean',
+    }
+).reset_index()
+
+# HISTOGRAM    
+col1, col2 = st.columns((1,3))
+with col1:
+    # Histogram Rataan Vol Saham per Tahun
+    st.write(lorem.paragraphs(1))
+with col2:
+    # Histogram Rataan Vol Saham per Tahun
+    df_hist_sum = pd.concat([data_mean.assign(dataset='ASII'), data1_mean.assign(dataset='UNTR'),
+                    data2_mean.assign(dataset='AUTO'), data3_mean.assign(dataset='AALI'),
+                    data4_mean.assign(dataset='ASGR')])
+    fig = px.bar(df_hist_sum, x='year', y='volume', color='dataset',
+                title="Rataan Volume Saham per Tahun ",
+                labels={'year': 'Year', 'volume': 'Volume', 'dataset': 'Saham'})
+    st.plotly_chart(fig, use_container_width=True)
+
 
 st.header("Close trend")
 
@@ -309,6 +564,9 @@ with row2:
 "Dapat dilihat tren saham ASII untuk tiap tahun berbeda-beda sehingga harus dikaji lebih lanjut untuk meyakinkan investor dalam membeli saham."
 
 "Untuk meyakinkan investor dalam membeli saham, berikut adalah prediksi yang diperoleh dengan menggunakan Gaussian Process dari data saham ASII untuk tahun 2022."
+
+
+st.header("Prediksi Close Trend Saham")
 
 #PREDICTION ASII
 dfp=pd.read_csv("datapred.csv")
