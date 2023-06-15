@@ -1003,13 +1003,15 @@ with col2:
         """
         - Berdasarkan return per tahun, saham ASII dan UNTR cocok untuk berinvestasi jangka panjang. Untuk ASII berawal dari harga 243 di akhir tahun 2002 menjadi 5700 di akhir tahun 2022 dan UNTR harga di akhir tahun 2002 sebesar 280 menjadi 26075 di akhir tahun 2022. Terdapat lonjakan dari return yang diperoleh cukup besar yaitu 228% dan 310% dan melihat fakta bahwa ASII merupakan perusahaan utama dan UNTR merupakan perusahaan distributor alat berat yang sampai saat ini masih digunakan untuk bidang pertambangan.\n
         - Dari Moving Average, hasil yang diperoleh menunjukkan grafik SMA10 dan SMA30 masih di atas grafik candlestick sehingga kurang baik jika membeli saham di awal Januari 2023.\n
-        - Rataan volume saham mencerminkan keaktifan dari saham itu sendiri sehingga saham ASII merupakan saham yang paling aktif diantara saham lainnya.\n
+        - Rataan volume saham mencerminkan keaktifan dari saham itu sendiri sehingga saham ASII merupakan saham yang paling aktif diantara saham lainnya dengan rataan tertinggi di setiap tahun untuk tahun 2001 sebesar 327,1565 M dan di tahun 2022 sebesar 46,66074 M.\n
         - Tren saham tiap tahun mulai dari 2001 sampai 2022 menunjukkan naik turunnya saham di tiap tahunnya. Dari tren saham per tahun, diperoleh saham ASII dan UNTR yang cenderung stabil naik dan turunnya.\n
-        - Hasil prediksi terbaik menyesuaikan tren saham aktual yaitu saham ASII.
-        
+        - Hasil visualisasi prediksi terhadap data aktal terbaik menurut MSE yaitu saham ASGR dengan nilai 0.02906138352811595 akan tetapi hasil prediksi kurang mencerminkan tren data aktual. Untuk saham dengan tren prediksi mendekati tren data aktual adalah saham ASII.
         """
     )
 
+
+#terbaik yang menyesuaikan tren saham aktual yaitu saham ASII dengan MSE sebesar 0.0710244182897843.
+        
 # "Dari hasil prediksi, dapat diketahui bahwa tren dari harga saham aktual dengan prediksi tidak berbeda cukup jauh."
 # "Saat tren saham pada data aktual naik, tren prediksi juga naik. Begitupula saat tren data aktual turun, tren predikti turun."
 # "Meskipun masih ada kenaikan atau penurunan yang berbeda dari data aktual dengan data prediksi, hasil prediksi masih dapat digunakan sebagai acuan investor dalam membeli saham."
