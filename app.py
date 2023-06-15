@@ -62,48 +62,58 @@ st.write("**Ahmad Taufiq Nur Rahman** | ataufiqnr799@gmail.com | www.linkedin.co
 
 col1, col2=st.columns((2,3))
 with col1:
+    st.subheader("Latar Belakang")
     st.header("Apa itu Saham?",anchor="SAHAM")
     st.markdown(
     """
-    Saham dapat didefinisikan sebagai tanda penyertaan modal seseorang atau pihak (beban usaha) dalam suatu perusahaan atau perseroan terbatas. Dengan menyertakan modal tersebut, maka pihak tersebut memiliki klaim atas pendapatan perusahaan, klaim atas asset perusahaan, dan berhak hadir dalam Rapat Umum Pemegang Saham (RUPS).
+    Saham dapat didefinisikan sebagai tanda penyertaan modal seseorang atau pihak (beban usaha) dalam suatu perusahaan atau perseroan terbatas. Dengan menyertakan modal tersebut, maka pihak tersebut memiliki klaim atas pendapatan perusahaan, klaim atas asset perusahaan, dan berhak hadir dalam Rapat Umum Pemegang Saham (RUPS).\n
+    **Perdagangan saham mempunyai peran penting dalam kegiatan ekonomi dan salah satu cara perusahaan untuk mengumpulkan modal dan investor untuk menghasilkan keuntungan.**\n
+    Dari hal tersebut, perlu adanya analisis lebih lanjut untuk dapat memilih waktu yang tepat dalam membeli saham.
 
     ---
     """
     )
-    st.subheader("Faktor yang Mempengaruhi Harga Saham")
-    st.markdown(
-        """
-        **- Faktor Eksternal**
-        1.    Kondisi Fundamental Ekonomi Makro
-        > Seperti tingkat suku bunga, inflasi, pertumbuhan ekonomi, dan kebijakan moneter, dapat berdampak signifikan pada harga saham secara keseluruhan.
-        2.    Fluktuasi Kurs Rupiah Terhadap Mata Uang Asing
-        > Kuat lemahnya kurs rupiah terhadap mata uang asing sering kali menjadi penyebab naik turunnya harga saham di bursa.
-        3.    Kebijakan Pemerintah
-        > Kebijakan ekspor impor, kebijakan perseroan, kebijakan utang, kebijakan Penanaman Modal Asing (PMA), dan lain sebagainya.
-        4.    Faktor Panik
-        > Kepanikan ini akan menuntut investor untuk melepas (menjual) sahamnya. Kembali pada hukum permintaan dan penawaran. Kondisi ini akan menyebabkan tekanan jual, sehingga harga saham akan turun.
-        5.    Faktor Manipulasi Pasar
-        > Manipulasi pasar biasanya dilakukan investor-investor berpengalaman dan bermodal besar dengan memanfaatkan media massa untuk memanipulasi kondisi tertentu demi tujuan mereka, baik menurunkan maupun meningkatkan harga saham.
-        
-        ---
-        """
-    )
 
 with col2:
     st.image('gambar1.jpg', caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+
+st.subheader("Faktor yang Mempengaruhi Harga Saham")
+col1,col2=st.columns(2)
+
+with col1:
     st.markdown(
-        """
-        **- Faktor Internal**
-        1.    Faktor Fundamental Perusahaan
-        > Saham dari perusahaan yang memiliki fundamental baik akan menyebabkan tren harga sahamnya naik.
-        2.    Aksi Korporasi Perusahaan
-        > Contoh dari aksi korporasi adalah terjadinya akuisisi, merger, right issue, atau divestasi.
-        3.    Proyeksi Kinerja Perusahaan Pada Masa Mendatang
-        > Performa atau kinerja perusahaan dijadikan acuan bagi para investor maupun analis fundamental dalam melakukan pengkajian terhadap saham perusahaan. 
-        
-        ---
-        """
+    """
+    **- Faktor Eksternal**
+    1.    Kondisi Fundamental Ekonomi Makro
+    > Seperti tingkat suku bunga, inflasi, pertumbuhan ekonomi, dan kebijakan moneter, dapat berdampak signifikan pada harga saham secara keseluruhan.
+    2.    Fluktuasi Kurs Rupiah Terhadap Mata Uang Asing
+    > Kuat lemahnya kurs rupiah terhadap mata uang asing sering kali menjadi penyebab naik turunnya harga saham di bursa.
+    3.    Kebijakan Pemerintah
+    > Kebijakan ekspor impor, kebijakan perseroan, kebijakan utang, kebijakan Penanaman Modal Asing (PMA), dan lain sebagainya.
+    4.    Faktor Panik
+    > Kepanikan ini akan menuntut investor untuk melepas (menjual) sahamnya. Kembali pada hukum permintaan dan penawaran. Kondisi ini akan menyebabkan tekanan jual, sehingga harga saham akan turun.
+    5.    Faktor Manipulasi Pasar
+    > Manipulasi pasar biasanya dilakukan investor-investor berpengalaman dan bermodal besar dengan memanfaatkan media massa untuk memanipulasi kondisi tertentu demi tujuan mereka, baik menurunkan maupun meningkatkan harga saham.
+    
+    ---
+    """
     )
+with col2:
+    st.markdown(
+    """
+    **- Faktor Internal**
+    1.    Faktor Fundamental Perusahaan
+    > Saham dari perusahaan yang memiliki fundamental baik akan menyebabkan tren harga sahamnya naik.
+    2.    Aksi Korporasi Perusahaan
+    > Contoh dari aksi korporasi adalah terjadinya akuisisi, merger, right issue, atau divestasi.
+    3.    Proyeksi Kinerja Perusahaan Pada Masa Mendatang
+    > Performa atau kinerja perusahaan dijadikan acuan bagi para investor maupun analis fundamental dalam melakukan pengkajian terhadap saham perusahaan. 
+    
+    ---
+    """
+    )
+
+
 
 col1,col2=st.columns((1,3))
 with col1:
@@ -991,7 +1001,7 @@ with col1:
 with col2:
     st.markdown(
         """
-        - Berdasarkan return per tahun, saham ASII dan UNTR cocok untuk berinvestasi jangka panjang karena dari return yang diperoleh terdapat lonjakan yang cukup besar dan melihat fakta bahwa ASII merupakan perusahaan utama dan UNTR merupakan perusahaan distributor alat berat yang sampai saat ini masih digunakan untuk bidang pertambangan.\n
+        - Berdasarkan return per tahun, saham ASII dan UNTR cocok untuk berinvestasi jangka panjang. Untuk ASII berawal dari harga 243 di akhir tahun 2002 menjadi 5700 di akhir tahun 2022 dan UNTR harga di akhir tahun 2002 sebesar 280 menjadi 26075 di akhir tahun 2022. Terdapat lonjakan dari return yang diperoleh cukup besar yaitu 228% dan 310% dan melihat fakta bahwa ASII merupakan perusahaan utama dan UNTR merupakan perusahaan distributor alat berat yang sampai saat ini masih digunakan untuk bidang pertambangan.\n
         - Dari Moving Average, hasil yang diperoleh menunjukkan grafik SMA10 dan SMA30 masih di atas grafik candlestick sehingga kurang baik jika membeli saham di awal Januari 2023.\n
         - Rataan volume saham mencerminkan keaktifan dari saham itu sendiri sehingga saham ASII merupakan saham yang paling aktif diantara saham lainnya.\n
         - Tren saham tiap tahun mulai dari 2001 sampai 2022 menunjukkan naik turunnya saham di tiap tahunnya. Dari tren saham per tahun, diperoleh saham ASII dan UNTR yang cenderung stabil naik dan turunnya.\n
