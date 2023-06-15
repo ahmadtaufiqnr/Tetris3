@@ -65,37 +65,69 @@ with col1:
     st.header("Apa itu Saham?",anchor="SAHAM")
     st.markdown(
     """
-    Saham adalah instrumen keuangan yang mewakili kepemilikan sebagian dari suatu perusahaan. Ketika seseorang membeli saham maka secara efektif orang tersebut membeli bagian kecil dari perusahaan.
-    Investasi saham dapat dilakukan oleh individu atau institusi dengan harapan mendapatkan keuntungan dari kenaikan harga saham atau dividen yang dibayarkan oleh perusahaan.
-    
+    Saham dapat didefinisikan sebagai tanda penyertaan modal seseorang atau pihak (beban usaha) dalam suatu perusahaan atau perseroan terbatas. Dengan menyertakan modal tersebut, maka pihak tersebut memiliki klaim atas pendapatan perusahaan, klaim atas asset perusahaan, dan berhak hadir dalam Rapat Umum Pemegang Saham (RUPS).
+
     ---
     """
     )
     st.subheader("Faktor yang Mempengaruhi Harga Saham")
+    st.markdown(
+        """
+        **- Faktor Eksternal**
+        1.    Kondisi Fundamental Ekonomi Makro
+        > Seperti tingkat suku bunga, inflasi, pertumbuhan ekonomi, dan kebijakan moneter, dapat berdampak signifikan pada harga saham secara keseluruhan.
+        2.    Fluktuasi Kurs Rupiah Terhadap Mata Uang Asing
+        > Kuat lemahnya kurs rupiah terhadap mata uang asing sering kali menjadi penyebab naik turunnya harga saham di bursa.
+        3.    Kebijakan Pemerintah
+        > Kebijakan ekspor impor, kebijakan perseroan, kebijakan utang, kebijakan Penanaman Modal Asing (PMA), dan lain sebagainya.
+        4.    Faktor Panik
+        > Kepanikan ini akan menuntut investor untuk melepas (menjual) sahamnya. Kembali pada hukum permintaan dan penawaran. Kondisi ini akan menyebabkan tekanan jual, sehingga harga saham akan turun.
+        5.    Faktor Manipulasi Pasar
+        > Manipulasi pasar biasanya dilakukan investor-investor berpengalaman dan bermodal besar dengan memanfaatkan media massa untuk memanipulasi kondisi tertentu demi tujuan mereka, baik menurunkan maupun meningkatkan harga saham.
+        
+        ---
+        """
+    )
 
 with col2:
     st.image('gambar1.jpg', caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
-
-# st.subheader(
-#     """
-#         "Faktor yang Mempengaruhi Harga Saham"
-#         **Helo** _there_, 'how are you'?
-#     > Quickly
-#     - This
-#     - is
-    
-#     """
-# )
-"Maka dari itu, untuk mengetahui kondisi saham dari suatu perusahaan diperlukan adanya analisis dari harga saham tiap waktunya agar investor dapat memilih waktu yang tepat untuk melakukan investasi saham ke perusahaan tersebut."
-"Berikut analisis harga saham ASII (Astra International Tbk.), UNTR (United Tractors Tbk.), AUTO (Astra Otoparts Tbk.), AALI (Astra Agro Lestari Tbk.), dan ASGR (Astra Graphia Tbk.)."
-st.caption(
-    "data diperoleh dari https://www.kaggle.com/datasets/muamkh/ihsgstockdata "
+    st.markdown(
+        """
+        **- Faktor Internal**
+        1.    Faktor Fundamental Perusahaan
+        > Saham dari perusahaan yang memiliki fundamental baik akan menyebabkan tren harga sahamnya naik.
+        2.    Aksi Korporasi Perusahaan
+        > Contoh dari aksi korporasi adalah terjadinya akuisisi, merger, right issue, atau divestasi.
+        3.    Proyeksi Kinerja Perusahaan Pada Masa Mendatang
+        > Performa atau kinerja perusahaan dijadikan acuan bagi para investor maupun analis fundamental dalam melakukan pengkajian terhadap saham perusahaan. 
+        
+        ---
+        """
     )
-# df
-"Data harian harga saham dimulai tanggal 16 April 2001 sampai 06 Januari 2023."
 
-# st.dataframe(df1)
-# st.dataframe(df2)
+col1,col2=st.columns((1,3))
+with col1:
+    st.header("Tujuan")
+with col2:
+    st.markdown(
+        """
+        - Mengetahui return saham per tahun dari saham ASII, UNTR, AUTO, AALI, dan ASGR.
+        - Memperoleh informasi Moving Average dari ASII, UNTR, AUTO, AALI, dan ASGR.
+        - Mengetahui keaktifan dari saham ASII, UNTR, AUTO, AALI, dan ASGR.
+        - Memperoleh tren saham per tahun dari saham ASII, UNTR, AUTO, AALI, dan ASGR.
+        - Memperoleh hasil prediksi tren saham ASII, UNTR, AUTO, AALI, dan ASGR tahun 2022 menggunakan Gaussian Process Regression.
+        
+        ---
+        """
+    )
+st.markdown(
+    """
+    Maka dari itu, untuk mengetahui kondisi saham dari suatu perusahaan diperlukan adanya analisis dari harga saham tiap waktunya agar investor dapat memilih waktu yang tepat untuk melakukan investasi saham ke perusahaan tersebut.
+    Berikut analisis harga saham ASII (Astra International Tbk.), UNTR (United Tractors Tbk.), AUTO (Astra Otoparts Tbk.), AALI (Astra Agro Lestari Tbk.), dan ASGR (Astra Graphia Tbk.).
+    \n Data harian harga saham dimulai tanggal 16 April 2001 sampai 06 Januari 2023.
+    """
+
+)
 
 data_ly=df2.groupby('Year').last().reset_index()
 data1_ly=df_norm_untr.groupby('Year').last().reset_index()
@@ -103,18 +135,10 @@ data2_ly=df_norm_auto.groupby('Year').last().reset_index()
 data3_ly=df_norm_aali.groupby('Year').last().reset_index()
 data4_ly=df_norm_asgr.groupby('Year').last().reset_index()
 
-# # Histogram Sum Close per Tahun
-# df_hist_sum = pd.concat([data_ly.assign(dataset='ASII Close'), data1_ly.assign(dataset='UNTR Close'),
-#                 data2_ly.assign(dataset='AUTO Close'), data3_ly.assign(dataset='AALI Close'),
-#                 data4_ly.assign(dataset='ASGR Close')])
-
-# fig = px.bar(df_hist_sum, x='Year', y='volume', color='dataset',
-#             title="Sum Close Trend Saham per Tahun ",
-#             labels={'year': 'Year', 'volume': 'Volume', 'dataset': 'Saham'})
-
-# st.plotly_chart(fig, use_container_width=True)
-
-st.subheader("Return Saham per Tahun")
+st.header("Return Saham per Tahun")
+st.caption(
+    "Keterangan : return saham dihitung dari data terakhir dari close untuk setiap tahunnya."
+)
 
 CURR_YEAR=st.select_slider(
     "Pilih tahun",
@@ -246,10 +270,26 @@ with mx_close:
     prev_close = data4_ly.loc[data4_ly['Year']==PREV_YEAR, 'close'].values[0]
     close_diff_pct=100.0*(curr_close-prev_close)/prev_close
     st.metric('close', value=curr_close, delta=f'{close_diff_pct:.2f}%')
-st.caption("Keterangan : JANGAN LUPA DIISI")
+st.markdown(
+    """
+    **Penjelasan**
+    - Pada ASII, return terbedar berada di tahun 2009 sebesar 228%. Dimulai dengan harga 243 di tahun 2002 menjadi 5700 di tahun 2022.\n
+    - Pada UNTR, return terbesar yang diperoleh sebesar 310% di tahun 2003. Berlanjut di tahun 2009, diperoleh return sebesar 252%. Dari yang semula harga saham sekitar 280 di tahun 2002 menjadi 26075 di tahun 2022.\n
+    - Pada AUTO, pergerakan saham meningkat dimulai dengan harga 268 di tahun 2002 sampai di tahun 2017 sebesar sampai 1460 di tahun 2022.\n
+    - Pada AALI, return terbesar di tahun 2006 sebesar 257%. Dimulai dengan harga 1576 di tahun 2002. Pergerakan saham meningkat mulai tahun 2004 sampai 2010 mencapai harga 25000 dan mulai mengalami penurunan di tahun 2011 secara perlahan sampai akhirnya di tahun 2022 sebesar 8025.\n
+    - Pada ASGR dimulai dengan harga 280 di tahun 2002 sampai 950 di tahun 2022.
+    """
+)
 
 st.header("Harga Setiap Saham")
 st.caption("Harga Saham mulai Januari 2019 sampai Januari 2023")
+st.caption(
+    """
+    Keterangan : \n
+    SMA10 : _Simple Moving Average_ 2 minggu\n
+    SMA30 : _Simple Moving Average_ 6 minggu
+    """
+)
 
 tab1,tab2,tab3,tab4,tab5=st.tabs(['ASII','UNTR','AUTO','AALI','ASGR'])
 with tab1:
@@ -287,7 +327,12 @@ with tab1:
                         yaxis_title='Price')
         st.plotly_chart(fig, use_container_width=True)
         with col2:
-            st.write(lorem.paragraphs(1))
+            st.write(
+                """
+                Pada saham ASII, mulai tahun 2019 terdapat penurunan harga saham tepatnya di bulan Februari 2020 saham turun drastis. Hal ini dikarenakan terdapat pandemi Covid-19 yang mulai menyebar di sekitar bulan tersebut di Indonesia. Hal ini tidak menguntungkan bagi investor yang sudah menanamkan saham di periode sebelumnya, sebaliknya akan menguntungkan bagi investor yang mulai menanamkan saham dengan cara melihat grafik SMA10 dan SMA20 tepat di bawah grafik candlestick pada sekitar bulan Mei 2020 menandakan harga saham akan mengalami kenaikan.
+                
+                """
+            )
 with tab2:
     col1,col2=st.columns((3,1))
     with col1:
@@ -323,7 +368,11 @@ with tab2:
                         yaxis_title='Price')
         st.plotly_chart(fig, use_container_width=True)
         with col2:
-            st.write(lorem.paragraphs(1))
+            st.write(
+                """
+                Pada saham UNTR, mulai Januari 2020 terdapat penurunan harga saham dan terendah berada pada bulan April 2020. Mulai Juli 2020, saham mulai meningkat beriringan waktu.Penyebab utama yaitu dikarenakan terdapat pandemi Covid-19 yang mulai menyebar di sekitar bulan tersebut di Indonesia. Hal ini tidak menguntungkan bagi investor yang sudah menanamkan saham di periode sebelumnya, sebaliknya akan menguntungkan bagi investor yang mulai menanamkan saham dengan cara melihat grafik SMA10 dan SMA20 tepat di bawah grafik candlestick pada sekitar bulan April 2020 menandakan harga saham akan mengalami kenaikan.
+                """
+            )
 
 with tab3:
     col1,col2=st.columns((3,1))
@@ -360,7 +409,11 @@ with tab3:
                         yaxis_title='Price')
         st.plotly_chart(fig, use_container_width=True)
         with col2:
-            st.write(lorem.paragraphs(1))
+            st.write(
+                """
+                Pada saham AUTO, karakteristik penurunan saham sama seperti pada saham ASII. Dapat diasumsikan sama, karena AUTO sendiri merupakan anak perusahaan dari ASII yang bergerak di bidang otomotif. Pembelian saham yang paling tepat pada bulan April 2020 karena terdapat penurunan drastis pada bulan tersebut.
+                """
+            )
 
 with tab4:
     col1,col2=st.columns((3,1))
@@ -397,7 +450,11 @@ with tab4:
                         yaxis_title='Price')
         st.plotly_chart(fig, use_container_width=True)
         with col2:
-            st.write(lorem.paragraphs(1))
+            st.write(
+                """
+                Pada saham AALI, mulai bulan Januari 2020 akhir penurunan terajdi secara drastis dan puncak penurunan berada di bulan April 2020. Pada bulan ini, investor dapat memanfaatkan kesempatan untuk membeli saham ini.
+                """
+            )
 
 with tab5:
     col1,col2=st.columns((3,1))
@@ -434,7 +491,12 @@ with tab5:
                         yaxis_title='Price')
         st.plotly_chart(fig, use_container_width=True)
         with col2:
-            st.write(lorem.paragraphs(1))
+            st.write(
+                """
+                Pada saham ASGR, bulan April 2019 mulai menurun secara perlahan dan puncak penurunan terjadi di bulan Maret 2020 karena adanya pandemi. Melihat pergerakan SMA10 dan SMA30 yang tidak signifikan naik. Tampaknya kurang baik untuk membeli saham pada perusahaan ini karena kenaikan yang tidak cukup tinggi.
+                
+                """
+            )
 
 data_mean=pd.pivot_table(
     data=df_asii1,
@@ -480,7 +542,12 @@ data4_mean=pd.pivot_table(
 col1, col2 = st.columns((1,3))
 with col1:
     # Histogram Rataan Vol Saham per Tahun
-    st.write(lorem.paragraphs(1))
+    st.header("Rataan Volume Saham per Tahun")
+    st.write(
+        """
+        Pada histogram, terlihat bahwa rataan volume per tahun terbesar diperoleh saham ASII. Perlu diketahui, banyaknya volume dari saham ASII mempengaruhi keaktifan dari saham itu sendiri. Jadi dengan rataan yang tinggi dari ASII, maka perusahaan ini merupakan perusahaan dengan saham paling aktif dibandingkan dengan 4 saham lainnya. Disusul dengan UNTR, ASGR, AALI, dan AUTO.
+        """
+    )
 with col2:
     # Histogram Rataan Vol Saham per Tahun
     df_hist_sum = pd.concat([data_mean.assign(dataset='ASII'), data1_mean.assign(dataset='UNTR'),
@@ -492,9 +559,11 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
 
-st.header("Close trend")
+st.header("Close Trend")
+st.caption("Keterangan : Data saham sudah dilakukan normalisasi terlebih dahulu dan dimulai dengan 0.")
 
 #MULTISELECT CLOSE TRENDS
+
 multitahun = st.multiselect(
     "Pilih tahun",
     [2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002],
@@ -511,6 +580,12 @@ close_line = alt.Chart(filtered_df).mark_line().encode(
 )
 st.altair_chart(close_line, use_container_width=True)
 
+st.caption(
+    """
+    Pada ASII, kenaikan tren saham tertinggi terjadi pada tahun 2017 dan penurunan terendah terjadi tahun 2020.
+    """
+)
+
 row1, row2 = st.columns(2)
 with row1:
     #CLOSE TRENDS UNTR
@@ -523,6 +598,11 @@ with row1:
     title=f"Close Trend Saham UNTR {', '.join(map(str, multitahun))}"
     )
     st.altair_chart(close_line, use_container_width=True)
+    st.caption(
+        """
+        Pada UNTR, kenaikan tren saham tertinggi terjadi pada tahun 2017 dan penurunan terendah terjadi tahun 2012.
+        """
+    )
 with row2:
     #CLOSE TRENDS AUTO
     filtered_df = df_norm_auto[df_norm_auto['Year'].isin(multitahun)]
@@ -534,6 +614,12 @@ with row2:
         title=f"Close Trend Saham AUTO {', '.join(map(str, multitahun))}"
     )
     st.altair_chart(close_line, use_container_width=True)
+    st.caption(
+        """
+        Pada AUTO, kenaikan tren saham tertinggi terjadi pada tahun 2010 dan penurunan terendah terjadi tahun 2015.
+
+        """
+    )
 row1, row2 = st.columns(2)
 with row1:
     #CLOSE TRENDS AALI
@@ -546,6 +632,12 @@ with row1:
         title=f"Close Trend Saham AALI {', '.join(map(str, multitahun))}"
     )
     st.altair_chart(close_line, use_container_width=True)
+    st.caption(
+        """
+        Pada AALI, kenaikan tren saham tertinggi terjadi pada tahun 2009 dan penurunan terendah terjadi tahun 2008.
+
+        """
+    )
 with row2:
     #CLOSE TRENDS AALI
     filtered_df = df_norm_asgr[df_norm_asgr['Year'].isin(multitahun)]
@@ -557,16 +649,19 @@ with row2:
         title=f"Close Trend Saham ASGR {', '.join(map(str, multitahun))}"
     )
     st.altair_chart(close_line, use_container_width=True)
-
-#gambar tiap tahun
-# st.image('std close.png', caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
-
-"Dapat dilihat tren saham ASII untuk tiap tahun berbeda-beda sehingga harus dikaji lebih lanjut untuk meyakinkan investor dalam membeli saham."
-
-"Untuk meyakinkan investor dalam membeli saham, berikut adalah prediksi yang diperoleh dengan menggunakan Gaussian Process dari data saham ASII untuk tahun 2022."
-
+    st.caption(
+        """
+        Pada AALI, kenaikan tren saham tertinggi terjadi pada tahun 2014 dan penurunan terendah terjadi tahun 2017.
+        """
+    )
 
 st.header("Prediksi Close Trend Saham")
+st.caption(
+    """
+    Keterangan : Hasil prediksi diperoleh dari _Gaussian Process Regression_
+
+    """
+)
 
 #PREDICTION ASII
 dfp=pd.read_csv("datapred.csv")
@@ -873,6 +968,38 @@ with row2:
         "dengan MSE yang diperoleh sebesar 0.02906138352811595"
     )
 
-"Dari hasil prediksi, dapat diketahui bahwa tren dari harga saham aktual dengan prediksi tidak berbeda cukup jauh."
-"Saat tren saham pada data aktual naik, tren prediksi juga naik. Begitupula saat tren data aktual turun, tren predikti turun."
-"Meskipun masih ada kenaikan atau penurunan yang berbeda dari data aktual dengan data prediksi, hasil prediksi masih dapat digunakan sebagai acuan investor dalam membeli saham."
+st.markdown(
+    """
+    **Hasil Prediksi**
+    - Pada saham ASII, hasil prediksi di tahun 2022 mengikuti tren dari data aktual saham dengan bentuk naik serta turun yang dapat digunakan sebagai acuan memilih waktu yang tepat dalam membeli saham. Salah satunya contohnya dengan melihat hasil prediksi, investor dapat membeli saham di sekitar awal bulan Maret 2022 dan menjual di awal bulan Mei 2022.\n
+
+    - Pada saham UNTR, hasil prediksi kurang baik untuk dijadikan acuan dalam membeli saham. Terdapat hasil prediksi di sekitar bulan Juni 2022 sampai sekitar bulan Oktober 2022 yang tidak sesuai dengan data aktual.\n
+
+    - Pada saham AUTO, meskipun prediksi tren tidak sesuai pola data aktual tapi dapat dijadikan sebagai pemilihan waktu membeli saham yaitu dapat membeli sahan di sekitar bulan Februari 2022.\n
+
+    - Pada saham AALI, hasil prediksi dapat dijadikan acuan akan tetapi tren saham 2022 menurun sehingga kurang baik untuk menjual saham di tahun ini.\n
+
+    - Pada saham ASGR, hasil prediksi kurang mencerminkan tren data aktual sehingga kurang akurat untuk memilih waktu pembelian atau penjualan di tahun 2022.
+
+    ---
+    """
+)
+
+col1,col2=st.columns((1,3))
+with col1:
+    st.header("Kesimpulan")
+with col2:
+    st.markdown(
+        """
+        - Berdasarkan return per tahun, saham ASII dan UNTR cocok untuk berinvestasi jangka panjang karena dari return yang diperoleh terdapat lonjakan yang cukup besar dan melihat fakta bahwa ASII merupakan perusahaan utama dan UNTR merupakan perusahaan distributor alat berat yang sampai saat ini masih digunakan untuk bidang pertambangan.\n
+        - Dari Moving Average, hasil yang diperoleh menunjukkan grafik SMA10 dan SMA30 masih di atas grafik candlestick sehingga kurang baik jika membeli saham di awal Januari 2023.\n
+        - Rataan volume saham mencerminkan keaktifan dari saham itu sendiri sehingga saham ASII merupakan saham yang paling aktif diantara saham lainnya.\n
+        - Tren saham tiap tahun mulai dari 2001 sampai 2022 menunjukkan naik turunnya saham di tiap tahunnya. Dari tren saham per tahun, diperoleh saham ASII dan UNTR yang cenderung stabil naik dan turunnya.\n
+        - Hasil prediksi terbaik menyesuaikan tren saham aktual yaitu saham ASII.
+        
+        """
+    )
+
+# "Dari hasil prediksi, dapat diketahui bahwa tren dari harga saham aktual dengan prediksi tidak berbeda cukup jauh."
+# "Saat tren saham pada data aktual naik, tren prediksi juga naik. Begitupula saat tren data aktual turun, tren predikti turun."
+# "Meskipun masih ada kenaikan atau penurunan yang berbeda dari data aktual dengan data prediksi, hasil prediksi masih dapat digunakan sebagai acuan investor dalam membeli saham."
